@@ -1,30 +1,33 @@
 # /usr/bin/python3
 
 import tkinter as tk
+from tkinter import messagebox
+from tkinter.filedialog import askopenfilename
 
 class main():
-	i = 0
 	def __init__(self):
 		self.window = tk.Tk()
 		self.window.title("Logiciel Gestion Commande")
-		self.window.geometry('300x500')
+		self.window.geometry('1065x1000')
+		self.window.configure(bg="#666363")
 
-		self.btnA = tk.Button(self.window,text="Color",bg="white",fg="red")
-		self.btnA.grid(column=0, row=0 )
+		self.frameSearch = tk.Frame(self.window , width=200 , height= 800, bg="grey")
+		self.frameSearch.grid()
 
-		self.btn = tk.Button(self.window,text="clique Her", command=self.clique)
-		self.btn.grid(column=2,row=0)
+		self.searchBarre = tk.Entry(self.frameSearch,bg="white",width=60).grid(padx=(350 , 350), pady=(50 , 50))
+
+		def newWindow():
+			self.top = tk.Toplevel()
+			self.top.geometry("400x200")
+			self.label1 = tk.Label(self.top,text="New Window").pack()
+
+
+		self.btn1 = tk.Button(self.window,text=". . .",bg="#666363",bd=0,command=newWindow).place(x=1030,y=130)
 
 		self.window.mainloop()
 
-	def clique(self):
-		print(i)
-		if i == 0:
-			self.btnA["bg"] = "orange"
-			i = 1
-		elif i == 1:
-			self.btnA["bg"] = "white"
-			i = 0
 
+
+		
 
 app = main()
