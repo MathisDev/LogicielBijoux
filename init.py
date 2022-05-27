@@ -13,8 +13,7 @@ def creer_base(db):
 
 	except Error as e:
 		print(e)
-		return -1
-
+		
 def peupler_base(db):
 
 	sql = ["CREATE TABLE Clients (identifiant_Clients INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, nom_client TEXT NOT NULL, type_client TEXT);","CREATE TABLE Commandes (identifiants_Commandes INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, identifiant_Clients INTEGER, FOREIGN KEY(identifiant_Clients) REFERENCES Clients(identifiant_Clients));"]
@@ -30,6 +29,7 @@ def peupler_base(db):
 		return 1
 
 	else :
+		li.close()
 		return -1
 
 if __name__ == '__main__':
