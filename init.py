@@ -29,7 +29,6 @@ def peupler_base(db):
 		return 1
 
 	else :
-		li.close()
 		return -1
 
 if __name__ == '__main__':
