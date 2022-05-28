@@ -6,6 +6,32 @@ conn = sqlite3.connect('test.db')
 cur = conn.cursor()
 
 # Fonctions
+def ajouter():
+    table = input("Quelle table voulez-vous modifier ? ")
+    
+    if table=="Clients":
+        nom = input("Nom du client : ")
+        prenom = input("Prénom du client : ")
+        entreprise = input("Entreprise du client : ")
+        email = input("email du client : ")
+        tel = input("Numéro de téléphone du client : ")
+        rqt = "INSERT INTO Clients (nom,prenom,entreprise,email,téléphone) VALUES ('"+nom+"','"+prenom+"','"+entreprise+"','"+email+"',"+tel+")"
+    
+    if table=="Commandes":
+        id_client = input("ID du client : ")
+        date = input("jj/mm/aaaa : ")
+        terminée = input("Terminée (Oui/Non) : ")
+        adresse = input("Adresse : ")
+        code_postale = input("Code postale : ")
+        ville = input("Ville : ")
+        rqt = "INSERT INTO Commandes (id_client,date,terminée,adresse,code_postale,ville) VALUES ('"+id_client+"','"+date+"','"+terminée+"','"+adresse+"','"+code_postale+"','"+ville+"')"
+    
+    else:
+        return
+    print(rqt)
+    cur.execute(rqt)
+    conn.commit()
+
 def obtenir():
 
     """
@@ -21,14 +47,12 @@ def obtenir():
     
     l=[]
     rqt = input("Entrez votre requête SQL : ")
-    #cur.execute("SELECT nom FROM Clients WHERE nom='Durant'")
     cur.execute(rqt)
     t = cur.fetchall()
     for i in range(len(t)):
         for j in range(len(t[i])):
             l.append(t[i][j])
     print(l)
-
 
 # Appel de fonctions
 obtenir()
