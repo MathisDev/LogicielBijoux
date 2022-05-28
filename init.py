@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 import sqlite3
-from sqlite3 import Error
 
 db = "./base.db"
 
@@ -32,7 +31,7 @@ def verifier_base(db):
 
 
 if __name__ == '__main__':
-	if peupler_base(db):
+	if creer_base(db):
 		schema = verifier_base(db)
 
 
