@@ -19,7 +19,33 @@ class main():
 
 		self.searchBarre = tk.Entry(self.window,width=30,font = ('courier', 12, 'bold')).place(x=400,y=130)
 
+		def homeListe():
+			txt = "Le nom de la commande "
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=250,y=250)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=250,y=300)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=250,y=350)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=250,y=400)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=250,y=450)
 
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=400,y=250)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=400,y=300)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=400,y=350)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=400,y=400)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=400,y=450)
+
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=550,y=250)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=550,y=300)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=550,y=350)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=550,y=400)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=550,y=450)
+
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=700,y=250)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=700,y=300)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=700,y=350)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=700,y=400)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=700,y=450)
+
+		homeListe()
 		def getAllvar():
 			print("function 'getAllvar' for Commande running")
 			self.top.destroy()
