@@ -18,32 +18,48 @@ class main():
 		self.titrerestor = tk.Label(self.frame1,text=" REST'OR ",font= 12,bg="#DFDFDC").place(x=500,y=15)
 
 		self.searchBarre = tk.Entry(self.window,width=30,font = ('courier', 12, 'bold')).place(x=400,y=130)
+		self.frameHomeListe = tk.Frame(self.window,width=700,height=350,bg="white").place(x=200,y=200)
+
+		def showCommande():
+				self.topShowCommande = tk.Toplevel(bg="#EEEC7C")
+				self.topShowCommande.geometry("400x700")
+				self.LabelIdCommande = tk.Label(self.topShowCommande,text="L'Id Commande",bg="#EEEC7C").place(x=20,y=20)
+
+		def showClients():
+				self.topShowCommande = tk.Toplevel(bg="#8E44AD")
+				self.topShowCommande.geometry("400x700")
+				self.frameClientsInfo = tk.Frame(self.topShowCommande,bg="grey",height=233,width=400).place(x=0,y=0)
+				self.LabelIdCommande = tk.Label(self.topShowCommande,text="L'Id Commande",bg="grey").place(x=20,y=20)
 
 		def homeListe():
 			txt = "Le nom de la commande "
-			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=250,y=250)
-			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=250,y=300)
-			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=250,y=350)
-			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=250,y=400)
-			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=250,y=450)
+			bg1 = "grey"
+			bg2 = "orange"
+			
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=19,height=2,bg=bg2,relief="ridge",command=showCommande).place(x=250,y=250)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=19,height=2,bg=bg2,relief="ridge",command=showCommande).place(x=250,y=300)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=19,height=2,bg=bg1,relief="ridge",command=showCommande).place(x=250,y=350)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=19,height=2,bg=bg1,relief="ridge",command=showCommande).place(x=250,y=400)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=19,height=2,bg=bg1,relief="ridge",command=showCommande).place(x=250,y=450)
 
-			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=400,y=250)
-			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=400,y=300)
-			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=400,y=350)
-			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=400,y=400)
-			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=400,y=450)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=19,height=2,relief="ridge",bg=bg1,command=showCommande).place(x=400,y=250)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=19,height=2,relief="ridge",bg=bg1,command=showCommande).place(x=400,y=300)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=19,height=2,relief="ridge",bg=bg1,command=showCommande).place(x=400,y=350)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=19,height=2,relief="ridge",bg=bg1,command=showCommande).place(x=400,y=400)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=19,height=2,relief="ridge",bg=bg1,command=showCommande).place(x=400,y=450)
 
-			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=550,y=250)
-			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=550,y=300)
-			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=550,y=350)
-			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=550,y=400)
-			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=550,y=450)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=19,height=2,relief="ridge",bg=bg1,command=showCommande).place(x=550,y=250)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=19,height=2,relief="ridge",bg=bg1,command=showCommande).place(x=550,y=300)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=19,height=2,relief="ridge",bg=bg1,command=showCommande).place(x=550,y=350)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=19,height=2,relief="ridge",bg=bg1,command=showCommande).place(x=550,y=400)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=19,height=2,relief="ridge",bg=bg1,command=showCommande).place(x=550,y=450)
 
-			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=700,y=250)
-			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=700,y=300)
-			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=700,y=350)
-			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=700,y=400)
-			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=18,height=2,bg="white").place(x=700,y=450)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=19,height=2,relief="ridge",bg=bg1,command=showCommande).place(x=700,y=250)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=19,height=2,relief="ridge",bg=bg1,command=showCommande).place(x=700,y=300)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=19,height=2,relief="ridge",bg=bg1,command=showCommande).place(x=700,y=350)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=19,height=2,relief="ridge",bg=bg1,command=showCommande).place(x=700,y=400)
+			self.commandeShowHome1 = tk.Button(self.window,text=txt,width=19,height=2,relief="ridge",bg=bg1,command=showCommande).place(x=700,y=450)
+
 
 		homeListe()
 		def getAllvar():
@@ -134,6 +150,12 @@ class main():
 			self.telephone = tk.Entry(self.top,width=30).place(x=100, y= 230)
 
 			btnValide = tk.Button(self.top,text="Valider",bg="#666363",bd=0,command=getAllvarClients).place(x=200,y=600)
+
+		def showCommande(txt):
+			self.top = tk.Toplevel(bg="#8E44AD")
+			self.top.geometry("400x700")
+			self.frameClientsInfo = tk.Frame(self.top,bg="grey",height=233,width=400).place()
+			self.LabelIdCommande = tk.Label(self.frameClientsInfo,text=txt,bg="grey").place(x=20,y=20)
 
 
 			 
