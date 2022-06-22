@@ -1,4 +1,5 @@
 # /usr/bin/python3
+from cgitb import grey
 from datetime import date
 from tkinter import *
 import tkinter as tk
@@ -6,6 +7,7 @@ from tkinter import messagebox
 from tkinter.filedialog import askopenfilename
 from functools import partial
 import sqlite3
+from turtle import color
 
 class main():
 	def __init__(self):
@@ -20,25 +22,54 @@ class main():
 		self.titrerestor = tk.Label(self.window,text=" REST'OR ",font = 25,bg="#666363").place(x=650,y=15)
 		self.searchBarre = tk.Entry(self.window,width=40,font = ('courier', 20, 'bold')).place(x=445,y=130)
 		
-		def showClients(conn,cur):	
-			self.topShowCommande = tk.Toplevel(bg="#8E44AD")
+		def showClients(conn,cur):
+			# variable :
+			color1 = "#8E44AD"
+			color = 'grey'	
+			entreprise = 'Odelor'
+			nom = 'Durant'
+			prenom = 'Jean'
+			compte = '100'
+			tel = '02.32.80.20.39'
+			mail = 'jeanDurant@gmail.com'
+			
+			self.topShowCommande = tk.Toplevel(bg=color1)
 			self.topShowCommande.geometry("400x700")
-			cur = conn.cursor()
-			rqt = "SELECT * FROM Clients;"
-			cur.execute(rqt)
-			rows = cur.fetchall()    
-			for row in rows:
-				print(row)        
-			cur.close()
-        	#master.destroy()
+			#cur = conn.cursor()
+			#rqt = "SELECT * FROM Clients;"
+			#cur.execute(rqt)
+			#rows = cur.fetchall()
+			#for row in rows:
+			#	print(row)        
+			#cur.close()
 
-			master = tk.Tk()
-			master.title("Afficher les clients")
+			# -- creation variable Compte -- #
+			entreCompte = 100
+			compte = str(entreCompte) + 'g'
 
-			l=["ID", "Entreprise", "Nom", "Prénom", "Adresse mail", "Solde du compte", "Numéro de téléphone"]
 
-			self.frameClientsInfo = tk.Frame(self.topShowCommande,bg="grey",height=233,width=400).place(x=0,y=0)
-			self.LabelIdCommande = tk.Label(self.topShowCommande,text="Clients",bg="grey").place(x=20,y=20)
+			# - Variable - 
+			color1 = "#8E44AD"
+			color = 'grey'	
+			fg = 13
+			entreprise = 'Odelor'
+			nom = 'Durant'
+			prenom = 'Jean'
+			tel = '02.32.80.20.39'
+			mail = 'jeanDurant@gmail.com'
+			
+
+			self.frameClientsInfo = tk.Frame(self.topShowCommande,bg='grey',height=233,width=400).place(x=0,y=0)
+
+			self.LabelFrames = tk.Label(self.topShowCommande,text=entreprise,font = fg,bg=color).place(x=20,y=25)
+			self.LabelName = tk.Label(self.topShowCommande,text=nom,bg=color).place(x=20,y=50)
+			self.LabelFirstName = tk.Label(self.topShowCommande,text=prenom,bg=color).place(x=20,y=75)
+
+			self.LabelMail = tk.Label(self.topShowCommande,text=mail,bg=color).place(x=20,y=110)
+			self.LabelNumTel = tk.Label(self.topShowCommande,text=tel,bg=color).place(x=20,y=135)
+
+			self.LabelCompte = tk.Label(self.topShowCommande,text=compte,bg=color).place(x=320,y=135)
+			self.titreCompte = tk.Label(self.topShowCommande,text='Compte poids : ',bg=color).place(x=220,y=135)
 
 		def showCommande(txt):
 			# modif() < showCommand() #
@@ -189,7 +220,7 @@ class main():
 			self.labelTitre = tk.Label(self.top,text="Nouveaux Clients",bg=color,font=10).place(x=30,y=10)
 
 			#self.titreIdClient = tk.Label(self.top,text='Nom du clients',bg=color).place(x=10, y= 50)
-			self.idClient = tk.Entry(self.top,width=w).place(x=l, y= 50)
+			#self.idClient = tk.Entry(self.top,width=w).place(x=l, y= 50)
 
 			self.titrefirmeNom = tk.Label(self.top,text='Nom Entreprise',bg=color).place(x=10, y= 80)
 			self.firmeNom = tk.Entry(self.top,width=w).place(x=l, y= 80)
