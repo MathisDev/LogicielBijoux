@@ -22,10 +22,12 @@ class main():
 		self.titrerestor = tk.Label(self.window,text=" REST'OR ",font = 25,bg="#666363").place(x=650,y=15)
 		self.searchBarre = tk.Entry(self.window,width=40,font = ('courier', 20, 'bold')).place(x=445,y=130)
 		
-		def showClients(conn,cur):
-			# variable :
+		def showClients():
+			# - Variable - 
 			color1 = "#8E44AD"
-			color = 'grey'	
+			color = 'grey'
+			fg = 13	
+
 			entreprise = 'Odelor'
 			nom = 'Durant'
 			prenom = 'Jean'
@@ -47,18 +49,7 @@ class main():
 			entreCompte = 100
 			compte = str(entreCompte) + 'g'
 
-
-			# - Variable - 
-			color1 = "#8E44AD"
-			color = 'grey'	
-			fg = 13
-			entreprise = 'Odelor'
-			nom = 'Durant'
-			prenom = 'Jean'
-			tel = '02.32.80.20.39'
-			mail = 'jeanDurant@gmail.com'
 			
-
 			self.frameClientsInfo = tk.Frame(self.topShowCommande,bg='grey',height=233,width=400).place(x=0,y=0)
 
 			self.LabelFrames = tk.Label(self.topShowCommande,text=entreprise,font = fg,bg=color).place(x=20,y=25)
