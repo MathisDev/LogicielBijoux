@@ -211,7 +211,7 @@ class main():
 		def prolongBtn():
 			btnprolong1 = tk.Button(window,text="Nouvelle Commande",bg="#666363",relief="ridge",highlightbackground = "#666363",command = partial(windowCommande,self),width=18).place(x=1165,y=147)
 			btnprolong2 = tk.Button(window,text="Nouveaux Client",bg="#666363",relief="ridge",highlightbackground = "#666363",command = partial(windowClient,self),width=18).place(x=1165,y=173)
-			opencommandeWindow = tk.Button(window,text="New Commande",bg="#666363",relief="ridge",highlightbackground = "#666363",command = partial(windowClient,self),width=18).place(x=1165,y=173)
+			opencommandeWindow = tk.Button(window,text="New Commande",bg="#666363",relief="ridge",highlightbackground = "#666363",command = partial(windowClient,self),width=18).place(x=1165,y=203)
 	
 
 
