@@ -241,7 +241,6 @@ class main():
 			self.windowControle.title("Nouveaux Controle")
 			self.windowControle.geometry("400x700")
 			data.entryControle = tk.Entry(self.windowControle,width=10,bg=color).place(x=20,y= 20)
-			data = Data()
 			
 
 
