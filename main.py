@@ -164,47 +164,61 @@ class main():
 			color = "#52575B"
 			self.top = tk.Toplevel(bg=color)
 			self.top.title("Nouvelle Commande")
-			self.top.geometry("400x700")
+			self.top.geometry("400x500")
 
-			self.titreWindow = tk.Label(self.top,text="Fiche Commande",bg=color,font=10).place(x=30 , y=0)
-			self.titreDepotDate = tk.Label(self.top,text="Date de depot",bg=color).place(x=10 , y=40)
-			self.titreNumCommande = tk.Label(self.top,text="n ° :",bg=color).place(x=10 , y=70)
-			self.titreNom = tk.Label(self.top,text="Nom :",bg=color).place(x=10 , y=100)
-			self.titrePrenom = tk.Label(self.top,text="Prénom",bg=color).place(x=10 , y=130)
-			self.titreAdress = tk.Label(self.top,text="Adresse",bg=color).place(x=10 , y=160)			
-			self.titreCp = tk.Label(self.top,text="C.P",bg=color).place(x=10 , y= 190)
-			self.titreVille = tk.Label(self.top,text="Ville",bg=color).place(x=10 , y= 220)
-			self.titreAdressMail = tk.Label(self.top,text="Adresse mail",bg=color).place(x=10 , y= 250)			
-			self.titreTel = tk.Label(self.top,text="Tel",bg=color).place(x=10 , y= 280)
-			self.titrePrixConvenue = tk.Label(self.top,text="Prix Convenue",bg=color).place(x=10 , y=320)
-			self.titreDevis= tk.Label(self.top,text="Devis",bg=color).place(x=10 , y=350)
-			self.titreAcompt = tk.Label(self.top,text="Devis",bg=color).place(x=10 , y=380)
-			self.titreRestePaye = tk.Label(self.top,text="Reste a Payer",bg=color).place(x=10 , y=410)
+			self.titreWindow = tk.Label(self.top,text="Fiche Commande",fg=color,bg=color,font=10).grid(row=1, column=1)
 
+			self.titreDepotDate = tk.Label(self.top,text="Date de depot",bg=color).place(x=10 , y=5)
+			self.titreNumCommande = tk.Label(self.top,text="n ° :",bg=color).place(x=10 , y=29)
+			self.titreNom = tk.Label(self.top,text="Nom :",bg=color).place(x=10 , y=59)
+			self.titrePrenom = tk.Label(self.top,text="Prénom",bg=color).place(x=10 , y=88)
+			self.titreAdress = tk.Label(self.top,text="Adresse",bg=color).place(x=10 , y=116)			
+			self.titreCp = tk.Label(self.top,text="C.P",bg=color).place(x=10 , y= 143)
+			self.titreVille = tk.Label(self.top,text="Ville",bg=color).place(x=10 , y= 173)
+			self.titreAdressMail = tk.Label(self.top,text="Adresse mail",bg=color).place(x=10 , y= 200)			
+			self.titreTel = tk.Label(self.top,text="Tel",bg=color).place(x=10 , y= 230)
+			self.titrePrixConvenue = tk.Label(self.top,text="Prix Convenue",bg=color).place(x=10 , y=253)
+			self.titreDevis= tk.Label(self.top,text="Devis",bg=color).place(x=10 , y=283)
+			self.titreAcompt = tk.Label(self.top,text="Acompt",bg=color).place(x=10 , y=313)
+			self.titreRestePaye = tk.Label(self.top,text="Reste a Payer",bg=color).place(x=10 , y=340)
 
-			data.dateDepot = tk.Entry(self.top,width=w).place(x=l ,y=40)
-			data.numCommand = tk.Entry(self.top,width=w).place(x=l ,y=70)
-			data.preNom = tk.Entry(self.top,width=w).place(x=l ,y=100)
-			data.prePrenom = tk.Entry(self.top,width=w).place(x=l ,y=130)
-			data.preAdress = tk.Entry(self.top,width=w).place(x=l ,y=160)
-			data.preCp = tk.Entry(self.top,width=w).place(x=l , y= 190)
-			data.preCp = tk.Entry(self.top,width=w).place(x=l , y= 190)
-			data.preAdressMail = tk.Entry(self.top,width=w).place(x=l , y= 250)
-			data.preTel = tk.Entry(self.top,width=w).place(x=l , y= 280)
-			data.prePrixConvenue = tk.Entry(self.top,width=w).place(x=l,y=320)
-			data.preDevis = tk.Entry(self.top,width=w).place(x=l,y=350)
-			data.preAcompt = tk.Entry(self.top,width=w).place(x=l,y=380)
-			data.preResterPaye = tk.Entry(self.top,width=w).place(x=l,y=410)
+			data.dateDepot = tk.Entry(self.top)
+			data.numCommand = tk.Entry(self.top)
+			data.Nom = tk.Entry(self.top)
+			data.Prenom = tk.Entry(self.top)
+			data.Adress = tk.Entry(self.top)
+			data.Cp = tk.Entry(self.top)
+			data.ville = tk.Entry(self.top)
+			data.AdressMail = tk.Entry(self.top)
+			data.Tel = tk.Entry(self.top)
+			data.PrixConvenue = tk.Entry(self.top)
+			data.Devis = tk.Entry(self.top)
+			data.Acompt = tk.Entry(self.top)
+			data.ResterPaye = tk.Entry(self.top)
+
+			data.dateDepot.grid(row=0, column=2,columnspan=2,rowspan=2)
+			data.numCommand.grid(row=2, column=2,columnspan=2,rowspan=2)
+			data.Nom.grid(row=4, column=2,columnspan=2,rowspan=2)
+			data.Prenom.grid(row=6, column=2,columnspan=2,rowspan=2)
+			data.Adress.grid(row=8, column=2,columnspan=2,rowspan=2)
+			data.Cp.grid(row=10, column=2,columnspan=2,rowspan=2)
+			data.ville.grid(row=12, column=2,columnspan=2,rowspan=2)
+			data.AdressMail.grid(row=14, column=2,columnspan=2,rowspan=2)
+			data.Tel.grid(row=16, column=2,columnspan=2,rowspan=2)
+			data.PrixConvenue.grid(row=18, column=2,columnspan=2,rowspan=2)
+			data.Devis.grid(row=20, column=2,columnspan=2,rowspan=2)
+			data.Acompt.grid(row=24, column=2,columnspan=2,rowspan=2)
+			data.ResterPaye.grid(row=26, column=2,columnspan=2,rowspan=2)
 					
-			def getVarCommande(self, data):
+			def getVarCommande(data):
 				#print(data.dateDepot.get()) Exemple d'un .get() fonctionnel
-				rqt = "INSERT INTO Commandes (idCommande, dateDepot, adresse, cp, ville, idClient) VALUES ('"+data.idCommande.get()+"','"+data.dateDepot.get()+"','"+data.adresse.get()+"','"+data.cp.get()+"','"+data.ville.get()+"','"+data.idClient.get()+"')"
+				rqt = "INSERT INTO Commandes (data.dateDepot,data.numCommand,data.Nom,data.Prenom,data.Adress,data.Cp,data.ville.grid,data.AdressMail,data.Tel,data.PrixConvenue,data.Devis.grid,data.Acompt,data.ResterPaye) VALUES ('"+data.dateDepot.get()+"','"+data.numCommand.get()+"','"+data.Nom.get()+"','"+data.Adress.get()+"','"+data.Cp.get()+"','"+data.ville.get()+"','"+data.AdressMail.get()+"','"+data.Tel.get()+"','"+data.PrixConvenue.get()+"','"+data.Devis.get()+"','"+data.Acompt.get()+"','"+data.ResterPaye.get()+"')"
 				cur = conn.cursor()
 				cur.execute(rqt)
 				conn.commit()
 				cur.close()
         								
-			self.btnValide = tk.Button(self.top, text='Valider', highlightbackground =color,command=partial(getVarCommande, self, data)).place(x=200,y= 500)
+			self.btnValide = tk.Button(self.top, text='Valider', highlightbackground =color,command=partial(getVarCommande,data)).place(x=250,y= 400)
 
 		# Top Level Clients #
 		def windowClient(self):
@@ -215,15 +229,15 @@ class main():
 
 			self.top = tk.Toplevel(bg=color)
 			self.top.title("Nouveau client")
-			self.top.geometry("400x700")
+			self.top.geometry("400x300")
 			
-			self.labelTitre = tk.Label(self.top,text="Nouveaux Clients",bg=color,font=10).place(x=30,y=10)
-			self.titrefirmeNom = tk.Label(self.top,text='Nom Entreprise',bg=color).place(x=10, y= 80)
-			self.titreClientsNom = tk.Label(self.top,text='Nom',bg=color).place(x=10, y= 110)
-			self.titrePrenom = tk.Label(self.top,text='Prenom',bg=color).place(x=10, y= 140)
-			self.titreAdressMail = tk.Label(self.top,text='Adresse Mail',bg=color).place(x=10, y= 170)
-			self.titreCompte = tk.Label(self.top,text='Compte poids',bg=color).place(x=10, y= 200)
-			self.titreTelephone = tk.Label(self.top,text='Tel',bg=color).place(x=10, y= 230)
+			self.labelTitre = tk.Label(self.top,text="Nouveaux clients",fg= color,bg=color,font=10).grid(row=1, column=1)
+			self.titrefirmeNom = tk.Label(self.top,text='Nom Entreprise',bg=color).place(x=10, y= 5)
+			self.titreClientsNom = tk.Label(self.top,text='Nom',bg=color).place(x=10, y= 30)
+			self.titrePrenom = tk.Label(self.top,text='Prenom',bg=color).place(x=10, y= 55)
+			self.titreAdressMail = tk.Label(self.top,text='Adresse Mail',bg=color).place(x=10, y= 85)
+			self.titreCompte = tk.Label(self.top,text='Compte poids',bg=color).place(x=10, y= 115)
+			self.titreTelephone = tk.Label(self.top,text='Tel',bg=color).place(x=10, y= 145)
 			
 			data.firmeNom = tk.Entry(self.top)
 			data.clientNom = tk.Entry(self.top)
@@ -232,12 +246,12 @@ class main():
 			data.compte = tk.Entry(self.top)
 			data.telephone = tk.Entry(self.top)
 
-			data.firmeNom.grid(row=0, column=2)
-			data.clientNom.grid(row=1, column=2)
-			data.clientPrenom.grid(row=2, column=2)
-			data.adresseMail.grid(row=3, column=2)
-			data.compte.grid(row=4, column=2)
-			data.telephone.grid(row=5, column=2)
+			data.firmeNom.grid(row=1, column=2,columnspan=2,rowspan=2)
+			data.clientNom.grid(row=3, column=2,columnspan=2,rowspan=2)
+			data.clientPrenom.grid(row=5, column=2,columnspan=2,rowspan=2)
+			data.adresseMail.grid(row=7, column=2,columnspan=2,rowspan=2)
+			data.compte.grid(row=9, column=2,columnspan=2,rowspan=2)
+			data.telephone.grid(row=11, column=2,columnspan=2,rowspan=2)
 
 			def getVarClients(data):
 				#print(data.__dict__) Affiche les attributs de data (classe Data()) pour le deboguage
@@ -247,7 +261,7 @@ class main():
 				conn.commit()
 				cur.close()
         		
-			self.btnValide = tk.Button(self.top, text='Valider', highlightbackground =color,command=partial(getVarClients,data)).place(x=200,y= 500)
+			self.btnValide = tk.Button(self.top, text='Valider', highlightbackground =color,command=partial(getVarClients,data)).place(x=230,y= 230)
 
 		def windowControle():
 			data = Data()
