@@ -6,6 +6,9 @@ from tkinter.filedialog import askopenfilename
 from functools import partial
 import sqlite3
 from turtle import color
+from tkinter.simpledialog import askstring
+from tkinter import RIGHT, TOP, ttk
+
 
 # Classe de 'stockage' :
 class Data() :
@@ -17,6 +20,7 @@ class Data() :
 # Classe de mise en forme :
 class main():	
 	def __init__(self):
+		data = Data()
 		self.txt="Test"
 		print(self.__dict__)
 		
@@ -67,6 +71,30 @@ class main():
 			self.frameClientsInfo = tk.Frame(self.topShowCommande,bg="grey",height=233,width=400).place(x=0,y=0)
 			self.LabelIdCommande = tk.Label(self.topShowCommande,text="Clients",bg="grey").place(x=20,y=20)
 
+		def search(data):
+			if data.queryString != None:
+				print(data.queryString)
+			tree.delete(*tree.get_children())
+			conn = sqlite3.connect("base.db")
+			cur = conn.cursor()
+			cur.execute("SELECT * FROM Clients WHERE clientNom LIKE ?;", [data.queryString.get()])
+			fetch = cur.fetchall()
+			for data in fetch:
+				tree.insert('', 'end', values=(data))
+			cur.close()
+			conn.close()
+
+		data.queryString = tk.Entry(window,width=40,font = ('courier', 20, 'bold')).place(x=445,y=130)
+		tk.Button(window, text='Chercher',highlightbackground = "#666363", command=partial(search,data)).place(x=980,y=130)
+
+		tree = ttk.Treeview(window, column=("c1", "c2", "c3","c4","c5","c6","c7"), show='headings')
+
+		l=["ID", "Entreprise", "Nom", "Prénom", "Adresse mail", "Solde du compte", "Numéro de téléphone"]
+
+		for i in range(len(l)):
+			tree.column("#"+str(i+1), anchor=tk.CENTER)
+			tree.heading("#"+str(i+1), text=l[i])
+		tree.place(x=20,y=200)
 
 		def showCommande(txt):
 			# modif() < showCommand() #
@@ -184,35 +212,35 @@ class main():
 
 			data.dateDepot = tk.Entry(self.top)
 			data.numCommand = tk.Entry(self.top)
-			data.Nom = tk.Entry(self.top)
-			data.Prenom = tk.Entry(self.top)
-			data.Adress = tk.Entry(self.top)
-			data.Cp = tk.Entry(self.top)
+			data.nom = tk.Entry(self.top)
+			data.prenom = tk.Entry(self.top)
+			data.adress = tk.Entry(self.top)
+			data.cp = tk.Entry(self.top)
 			data.ville = tk.Entry(self.top)
-			data.AdressMail = tk.Entry(self.top)
-			data.Tel = tk.Entry(self.top)
-			data.PrixConvenue = tk.Entry(self.top)
-			data.Devis = tk.Entry(self.top)
-			data.Acompt = tk.Entry(self.top)
-			data.ResterPaye = tk.Entry(self.top)
+			data.adressMail = tk.Entry(self.top)
+			data.tel = tk.Entry(self.top)
+			data.prixConvenue = tk.Entry(self.top)
+			data.devis = tk.Entry(self.top)
+			data.acompt = tk.Entry(self.top)
+			data.resterPaye = tk.Entry(self.top)
 
 			data.dateDepot.grid(row=0, column=2,columnspan=2,rowspan=2)
 			data.numCommand.grid(row=2, column=2,columnspan=2,rowspan=2)
-			data.Nom.grid(row=4, column=2,columnspan=2,rowspan=2)
-			data.Prenom.grid(row=6, column=2,columnspan=2,rowspan=2)
-			data.Adress.grid(row=8, column=2,columnspan=2,rowspan=2)
-			data.Cp.grid(row=10, column=2,columnspan=2,rowspan=2)
+			data.nom.grid(row=4, column=2,columnspan=2,rowspan=2)
+			data.prenom.grid(row=6, column=2,columnspan=2,rowspan=2)
+			data.adress.grid(row=8, column=2,columnspan=2,rowspan=2)
+			data.cp.grid(row=10, column=2,columnspan=2,rowspan=2)
 			data.ville.grid(row=12, column=2,columnspan=2,rowspan=2)
-			data.AdressMail.grid(row=14, column=2,columnspan=2,rowspan=2)
-			data.Tel.grid(row=16, column=2,columnspan=2,rowspan=2)
-			data.PrixConvenue.grid(row=18, column=2,columnspan=2,rowspan=2)
-			data.Devis.grid(row=20, column=2,columnspan=2,rowspan=2)
-			data.Acompt.grid(row=24, column=2,columnspan=2,rowspan=2)
-			data.ResterPaye.grid(row=26, column=2,columnspan=2,rowspan=2)
+			data.adressMail.grid(row=14, column=2,columnspan=2,rowspan=2)
+			data.tel.grid(row=16, column=2,columnspan=2,rowspan=2)
+			data.prixConvenue.grid(row=18, column=2,columnspan=2,rowspan=2)
+			data.devis.grid(row=20, column=2,columnspan=2,rowspan=2)
+			data.acompt.grid(row=24, column=2,columnspan=2,rowspan=2)
+			data.resterPaye.grid(row=26, column=2,columnspan=2,rowspan=2)
 					
 			def getVarCommande(data):
 				#print(data.dateDepot.get()) Exemple d'un .get() fonctionnel
-				rqt = "INSERT INTO Commandes (data.dateDepot,data.numCommand,data.Nom,data.Prenom,data.Adress,data.Cp,data.ville.grid,data.AdressMail,data.Tel,data.PrixConvenue,data.Devis.grid,data.Acompt,data.ResterPaye) VALUES ('"+data.dateDepot.get()+"','"+data.numCommand.get()+"','"+data.Nom.get()+"','"+data.Adress.get()+"','"+data.Cp.get()+"','"+data.ville.get()+"','"+data.AdressMail.get()+"','"+data.Tel.get()+"','"+data.PrixConvenue.get()+"','"+data.Devis.get()+"','"+data.Acompt.get()+"','"+data.ResterPaye.get()+"')"
+				rqt = "INSERT INTO Commandes (dateDepot,numCommand,nom,prenom,adress,cp,ville,adressMail,tel,prixConvenue,devis,acompt,resterPaye) VALUES ('"+data.dateDepot.get()+"','"+data.numCommand.get()+"','"+data.nom.get()+"','"+data.adress.get()+"','"+data.cp.get()+"','"+data.ville.get()+"','"+data.adressMail.get()+"','"+data.tel.get()+"','"+data.prixConvenue.get()+"','"+data.devis.get()+"','"+data.acompt.get()+"','"+data.resterPaye.get()+"')"
 				cur = conn.cursor()
 				cur.execute(rqt)
 				conn.commit()
@@ -255,7 +283,7 @@ class main():
 
 			def getVarClients(data):
 				#print(data.__dict__) Affiche les attributs de data (classe Data()) pour le deboguage
-				rqt = "INSERT INTO Clients (clientNom,clientPrenom,firmeNom,adresseMail,compte,telephone) VALUES ('"+data.firmeNom.get()+"','"+data.clientNom.get()+"','"+data.clientPrenom.get()+"','"+data.adresseMail.get()+"',"+data.compte.get()+","+data.telephone.get()+");"
+				rqt = "INSERT INTO Clients (firmeNom,clientNom,clientPrenom,adresseMail,compte,telephone) VALUES ('"+data.firmeNom.get()+"','"+data.clientNom.get()+"','"+data.clientPrenom.get()+"','"+data.adresseMail.get()+"',"+data.compte.get()+","+data.telephone.get()+");"
 				cur = conn.cursor()
 				cur.execute(rqt)
 				conn.commit()
@@ -289,12 +317,12 @@ class main():
 		def creer_base():
 			print("Base créée.")
 
-
+		'''
 		if __name__ == '__main__':
 			homeListe(self)
 			if creer_base():
 				schema = verifier_base()
-
+			'''
 
 		def verifier_base():
 			sql = "SELECT * from sqlite_master;"
@@ -307,8 +335,8 @@ class main():
 				li.close()
 				return resp
 
-		def creer_base(db):
-			sql = ["CREATE TABLE Clients (idClient INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, firmeNom TEXT, clientNom TEXT, clientPrenom TEXT, adresseMail TEXT, compte REAL, telephone INTEGER);","CREATE TABLE Commandes (idCommande INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, dateDepot INTEGER, adresse TEXT, cp INTEGER, ville TEXT, idClient INTEGER, FOREIGN KEY (idClient) REFERENCES Clients(idClient));"]
+		def creer_base( ):
+			sql =["CREATE TABLE Clients (idClient INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, firmeNom TEXT, clientNom TEXT, clientPrenom TEXT, adresseMail TEXT, compte REAL, telephone INTEGER, ncommande INTEGER UNIQUE);","CREATE TABLE Commandes (idCommande INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, dateDepot TEXT, numCommand INTEGER UNIQUE, nom TEXT, prenom TEXT, adress TEXT, cp INTEGER, prixConvenue REAL,devis REAL,acompt REAL,resterPaye REAL, telephone INTEGER, FOREIGN KEY (numCommand) REFERENCES Clients(ncommande));"]
 			li = sqlite3.connect("base.db")
 			
 			if li:
