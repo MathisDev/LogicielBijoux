@@ -30,8 +30,7 @@ class main():
 		window.title("Logiciel Gestion Commande")
 		window.geometry('1500x1000')
 		window.configure(bg="#666363")
-		self.titrerestor = tk.Label(window,text=" REST'OR ",font = 25,bg="#666363").place(x=650,y=15)
-		self.searchBarre = tk.Entry(window,width=40,font = ('courier', 20, 'bold')).place(x=445,y=130)
+		self.titrerestor = tk.Label(window,text=" REST'OR ",font =('normal',20,'bold'),bg="#666363").place(x=650,y=15)
 		
 		def showClients():
 			#cur = conn.cursor()
@@ -84,8 +83,8 @@ class main():
 			cur.close()
 			conn.close()
 
-		data.queryString = tk.Entry(window,width=40,font = ('courier', 20, 'bold')).place(x=445,y=130)
-		tk.Button(window, text='Chercher',highlightbackground = "#666363", command=partial(search,data)).place(x=980,y=130)
+		data.queryString = tk.Entry(window,width=40,font = ('courier', 20, 'bold')).pack(padx=10,pady=130)
+		tk.Button(window, text='Chercher',highlightbackground = "#666363", command=partial(search,data)).place(x=990,y=130)
 
 		tree = ttk.Treeview(window, column=("c1", "c2", "c3","c4","c5","c6","c7"), show='headings')
 
@@ -317,7 +316,7 @@ class main():
 		def creer_base():
 			print("Base créée.")
 
-		'''
+		''''
 		if __name__ == '__main__':
 			homeListe(self)
 			if creer_base():
@@ -336,7 +335,7 @@ class main():
 				return resp
 
 		def creer_base( ):
-			sql =["CREATE TABLE Clients (idClient INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, firmeNom TEXT, clientNom TEXT, clientPrenom TEXT, adresseMail TEXT, compte REAL, telephone INTEGER, ncommande INTEGER UNIQUE);","CREATE TABLE Commandes (idCommande INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, dateDepot TEXT, numCommand INTEGER UNIQUE, nom TEXT, prenom TEXT, adress TEXT, cp INTEGER, prixConvenue REAL,devis REAL,acompt REAL,resterPaye REAL, telephone INTEGER, FOREIGN KEY (numCommand) REFERENCES Clients(ncommande));"]
+			sql =["CREATE TABLE Clients (idClient INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, firmeNom TEXT, clientNom TEXT, clientPrenom TEXT, adresseMail TEXT, compte REAL, telephone INTEGER);","CREATE TABLE Commandes (idCommande INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, dateDepot TEXT, numCommand INTEGER UNIQUE, nom TEXT, prenom TEXT, adress TEXT, cp INTEGER, prixConvenue REAL,devis REAL,acompt REAL,resterPaye REAL, telephone INTEGER, FOREIGN KEY (numCommand) REFERENCES Clients(idCommande));"]
 			li = sqlite3.connect("base.db")
 			
 			if li:
