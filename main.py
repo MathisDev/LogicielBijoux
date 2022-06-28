@@ -418,8 +418,6 @@ class main():
 		#print(self.__dict__) Affiche les attributs de self (classe main()) pour le déboguage
 		
 		verifier_base('base.db')
-		showCommande()
-		showClients()
 
 		window.btn1 = tk.Button(window,text="+",width=3,height=1,font=2,highlightbackground = "#666363",command=prolongBtn).place(x=1300,y=50)
 		window.mainloop()
