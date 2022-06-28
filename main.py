@@ -275,7 +275,118 @@ class main():
 				print(data.entryControle.get())
 
 			self.button = tk.Button(self.windowControle,width=10,bg=color,text='Ajouter',command=partial(getVarControle,data)).grid(column=2,row=2)
+
+		def showClients():
+			# - Variable - 
+			color1 = "#8E44AD"
+			color = 'grey'
+			fg = 13	
+
+			entreprise = 'Odelor'
+			nom = 'Durant'
+			prenom = 'Jean'
+			compte = '100'
+			tel = '02.32.80.20.39'
+			mail = 'jeanDurant@gmail.com'
 			
+			self.topShowCommande = tk.Toplevel(bg=color1)
+			self.topShowCommande.geometry("400x700")
+			#cur = conn.cursor()
+			#rqt = "SELECT * FROM Clients;"
+			#cur.execute(rqt)
+			#rows = cur.fetchall()
+			#for row in rows:
+			#	print(row)        
+			#cur.close()
+
+			# -- creation variable Compte -- #
+			entreCompte = 100
+			compte = str(entreCompte) + 'g'
+
+			
+			self.frameClientsInfo = tk.Frame(self.topShowCommande,bg='grey',height=233,width=400).place(x=0,y=0)
+
+			self.LabelFrames = tk.Label(self.topShowCommande,text=entreprise,font = fg,bg=color).place(x=20,y=25)
+			self.LabelName = tk.Label(self.topShowCommande,text=nom,bg=color).place(x=20,y=50)
+			self.LabelFirstName = tk.Label(self.topShowCommande,text=prenom,bg=color).place(x=20,y=75)
+
+			self.LabelMail = tk.Label(self.topShowCommande,text=mail,bg=color).place(x=20,y=110)
+			self.LabelNumTel = tk.Label(self.topShowCommande,text=tel,bg=color).place(x=20,y=135)
+
+			self.LabelCompte = tk.Label(self.topShowCommande,text=compte,bg=color).place(x=320,y=135)
+			self.titreCompte = tk.Label(self.topShowCommande,text='Compte poids : ',bg=color).place(x=220,y=135)
+			
+		def showCommande():
+			txt = "Variable Commande "
+			# modif() < showCommand() #
+			def modif(self):
+				color = "#EEEC7C"
+				data = Data()
+				print("function 'motif' is running")
+				data.titreWindow = tk.Label(self.top,text="Fiche Commande",fg = "#EEEC7C" , bg="#EEEC7C",font=10).grid(column=1,row=1)
+
+				data.DateDepot = tk.Entry(self.top,relief="ridge",highlightbackground = color)
+				data.numCommand = tk.Entry(self.top,relief="ridge",highlightbackground = color)
+				data.Nom = tk.Entry(self.top,relief="ridge",highlightbackground = color)
+				data.Prenom = tk.Entry(self.top,relief="ridge",highlightbackground = color)
+				data.Adress = tk.Entry(self.top,relief="ridge",highlightbackground = color)
+				data.Cp = tk.Entry(self.top,relief="ridge",highlightbackground = color)
+				data.Ville = tk.Entry(self.top,relief="ridge",highlightbackground = color)
+				data.AdressMail = tk.Entry(self.top,relief="ridge",highlightbackground = color)
+				data.Tel = tk.Entry(self.top,relief="ridge",highlightbackground = color)
+				data.PrixConvenue = tk.Entry(self.top,relief="ridge",highlightbackground = color)
+				data.Devis = tk.Entry(self.top,relief="ridge",highlightbackground = color)
+				data.Acompt = tk.Entry(self.top,relief="ridge",highlightbackground = color)
+				data.ResterPaye = tk.Entry(self.top,relief="ridge",highlightbackground = color)
+
+				data.DateDepot.grid(row=2, column=2)
+				data.numCommand.grid(row=4, column=2)
+				data.Nom.grid(row=6, column=2)
+				data.Prenom.grid(row=8, column=2)
+				data.Adress.grid(row=10, column=2)
+				data.Cp.grid(row=12, column=2)
+				data.Ville.grid(row=14, column=2)
+				data.AdressMail.grid(row=16, column=2)
+				data.Tel.grid(row=18, column=2)
+				data.PrixConvenue.grid(row=20, column=2)
+				data.Devis.grid(row=22, column=2)
+				data.Acompt.grid(row=24, column=2)
+				data.ResterPaye.grid(row=26, column=2)
+				data.ResterPaye.grid(row=28, column=2)
+
+
+			self.top = tk.Toplevel(bg="#EEEC7C")
+			self.top.geometry("400x700")
+			self.titreDepotDate = tk.Label(self.top,text="Date de depot",bg="#EEEC7C").place(x=10 , y=20)
+			self.titreNumCommande = tk.Label(self.top,text="n ° :",bg="#EEEC7C").place(x=10 , y=50)
+			self.titreNom = tk.Label(self.top,text="Nom :",bg="#EEEC7C").place(x=10 , y=80)
+			self.titrePrenom = tk.Label(self.top,text="Prénom",bg="#EEEC7C").place(x=10 , y=110)		
+			self.titreAdress = tk.Label(self.top,text="Adresse",bg="#EEEC7C").place(x=10 , y=135)
+			self.titreCp = tk.Label(self.top,text="C.P",bg="#EEEC7C").place(x=10 , y= 165)
+			self.titreVille = tk.Label(self.top,text="Ville",bg="#EEEC7C").place(x=10 , y= 195)
+			self.titreAdressMail = tk.Label(self.top,text="Adresse mail",bg="#EEEC7C").place(x=10 , y= 220)
+			self.titreTel = tk.Label(self.top,text="Tel",bg="#EEEC7C").place(x=10 , y= 250)
+			self.titrePrixConvenue = tk.Label(self.top,text="Prix Convenue",bg="#EEEC7C").place(x=10 , y=279)
+			self.titreDevis= tk.Label(self.top,text="Devis",bg="#EEEC7C").place(x=10 , y=307)
+			self.titreAcompt = tk.Label(self.top,text="Acompt",bg="#EEEC7C").place(x=10 , y=335)			
+			self.titreRestePaye = tk.Label(self.top,text="Reste a Payer",bg="#EEEC7C").place(x=10 , y=363)
+			
+			self.preDateDepot = tk.Label(self.top,text=txt,width=30,bg="#EEEC7C").place(x=100 ,y=20)
+			self.numCommand = tk.Label(self.top,text=txt,width=30,bg="#EEEC7C").place(x=100 ,y=50)
+			self.preNom = tk.Label(self.top,text=txt,width=30,bg="#EEEC7C").place(x=100 ,y=80)                                                                                                                                    
+			self.prePrenom = tk.Label(self.top,text=txt,width=30,bg="#EEEC7C").place(x=100 ,y=110)
+			self.preAdress = tk.Label(self.top,text=txt,width=30,bg="#EEEC7C").place(x=100 ,y=135)
+			self.preCp = tk.Label(self.top,text=txt,width=30,bg="#EEEC7C").place(x=100 , y= 165)
+			self.preVille = tk.Label(self.top,text=txt,width=30,bg="#EEEC7C").place(x=100 , y= 195)
+			self.preAdressMail = tk.Label(self.top,text=txt,width=30,bg="#EEEC7C").place(x=100 , y= 220)
+			self.preTel = tk.Label(self.top,text=txt,width=30,bg="#EEEC7C").place(x=100 , y= 250)
+			self.prePrixConvenue = tk.Label(self.top,text=txt,width=30,bg="#EEEC7C").place(x=100,y=279)
+			self.preDevis = tk.Label(self.top,text=txt,width=30,bg="#EEEC7C").place(x=100,y=307)
+			self.preAcompt = tk.Label(self.top,text=txt,width=30,bg="#EEEC7C").place(x=100,y=335)
+			self.preResterPaye = tk.Label(self.top,text=txt,width=30,bg="#EEEC7C").place(x=100,y=363)
+
+			self.btnValide = tk.Button(self.top,text="modif",bg="#EEEC7C",relief="ridge",highlightbackground = "#EEEC7C",bd=0,command=partial(modif,self)).place(x=330,y=10)
+
 
 		def prolongBtn():
 			btnprolong1 = tk.Button(window,text="Nouvelle commande",bg="#666363",relief="ridge",highlightbackground = "#666363",command = partial(windowCommande,self),width=18).place(x=1165,y=80)
@@ -297,8 +408,6 @@ class main():
 				li.commit()
 				li.close()
 
-
-
 		def verifier_base(base):
 			from os.path import isfile
 			if not isfile(base):
@@ -309,6 +418,8 @@ class main():
 		#print(self.__dict__) Affiche les attributs de self (classe main()) pour le déboguage
 		
 		verifier_base('base.db')
+		showCommande()
+		showClients()
 
 		window.btn1 = tk.Button(window,text="+",width=3,height=1,font=2,highlightbackground = "#666363",command=prolongBtn).place(x=1300,y=50)
 		window.mainloop()
