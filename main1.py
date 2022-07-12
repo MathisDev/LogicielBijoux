@@ -370,10 +370,6 @@ class main():
 			self.titreDescription = tk.Label(self.top, text="Description",bg=color,font =('normal',16,'bold')).grid(row=6)
 			self.titretravaf = tk.Label(self.top, text="Travail à faire", bg=color,font =('normal',16,'bold')).grid(row=7)
 			self.titreNmbcmd = tk.Label(self.top, text="Nombre de commande", bg=color,font =('normal',16,'bold')).grid(row=8)
-			textlabel = Label(self.top, text='Glissez la photo ici', bg='#fcba03').grid(row=9)
-			labelframe = LabelFrame(self.top, bg='gold').grid(row=10,column=2)
-			btnEnregistrerFTP = tk.Button(self.top, text ="Valider", command = enregistrer).place(x=200,y=300)
-			testvariable = StringVar()
 
 			if type(Comm) == tuple:
 				print(Comm)
@@ -408,8 +404,6 @@ class main():
 				data.travaf = tk.Entry(self.top,font =('normal',16,'bold'),width=l)
 				data.travaf.insert(0, Comm[10])
 				entrybox = Entry(self.top, textvar=testvariable, width=80).pack(fill=X, padx=10)
-				entrybox.drop_target_register(DND_FILES)
-				entrybox.dnd_bind('<<Drop>>', DropImage)
 
 				data.dateDepot.grid(row=1, column=2)
 				data.idClient.grid(row=2, column=2)
@@ -450,8 +444,6 @@ class main():
 				data.travaf = tk.Entry(self.top,font =('normal',16,'bold'),width=l)
 				data.Nmbcmd = tk.Entry(self.top,font =('normal',16,'bold'),width=l)
 				entrybox = Entry(self.top, textvar=testvariable, width=80).pack(fill=X, padx=10)
-				entrybox.drop_target_register(DND_FILES)
-				entrybox.dnd_bind('<<Drop>>', DropImage)
 
 				data.idCommande.grid(row=1, column=2)
 				data.prixConvenu.grid(row=2, column=2)
