@@ -5,7 +5,7 @@ from tkinter import messagebox
 from functools import partial
 import sqlite3
 import functools
-from turtle import left
+from turtle import color, left
 from ttkwidgets.autocomplete import AutocompleteCombobox
 from tkinter import RIGHT, TOP, ttk
 from tkinter.messagebox import askokcancel, showinfo, WARNING
@@ -87,12 +87,12 @@ class main():
 		# - Affiche tout les clients -
 		def showAllClients():
 
-			color1 = "#8E44AD"
-			color = 'grey'
-			fg = 13	
+			color1 ="#666363"
 			
 			self.topShowAllClients = tk.Toplevel()
 			self.topShowAllClients.geometry("1920x1080")
+			self.topShowAllClients.configure(bg=color1)
+			self.topShowAllClients.title("Tout les Clients")
 			self.topShowAllClients.bind("<Escape>", lambda even: self.topShowAllClients.destroy())
 
 			arbre = ttk.Treeview(self.topShowAllClients, column=("c1","c2", "c3","c4","c5","c6","c7","c8","c9"), show='headings')
@@ -121,8 +121,8 @@ class main():
 			barr_rechCli.queryString.bind("<Return>", lambda even, brci = barr_rechCli, wC = self.topShowAllClients: search(brci,wC,"client"))
 			
 			self.topShowAllClients.bind("<Return>", lambda even, brci = barr_rechCli, wC = self.topShowAllClients: search(brci,wC,"client"))
-			tk.Button(self.topShowAllClients, text='Chercher',highlightbackground = "#666363", command=partial(search,barr_rechCli,self.topShowAllClients,"client")).place(x=900,y=130)
-			tk.Button(self.topShowAllClients, text='Quitter', command=lambda: self.topShowAllClients.destroy()).place(x=650,y=200)
+			tk.Button(self.topShowAllClients, text='Chercher',highlightbackground = color1 , command=partial(search,barr_rechCli,self.topShowAllClients,"client")).place(x=900,y=130)
+			tk.Button(self.topShowAllClients, text='Quitter', highlightbackground = color1 , command=lambda: self.topShowAllClients.destroy()).place(x=650,y=200)
 			
 
 		# - Permet d'effacer un client ET UNE COMMANDE !-
@@ -256,11 +256,9 @@ class main():
 						tree.bind("<Button-3>", unset_item)						
 					cur.close()
 					
-					
 					return 1 
 			except:
-				pass
-					
+				pass	
 
 			try:
 
@@ -343,8 +341,8 @@ class main():
 				val = fetch[0]
 				idCLI = fetch[0][11]
 				windowCommande(self, idCLI, val)
-				
-			
+
+
 		# - Récupération des noms des clients -
 		def recuperer(CI):
 			print(CI)
@@ -378,12 +376,12 @@ class main():
 		window.bind("<Return>", lambda even, brci = barr_rech, w = window: search(brci,w,"general"))
 			
 		
-		
 		# - Affiche tout les clients -
 		def showAllCommandes():
 			
 			self.topShowAllCommandes = tk.Toplevel()
 			self.topShowAllCommandes.geometry("1920x1080")
+			self.topShowAllCommandes.title("Toutes les Commande")
 			self.topShowAllCommandes.bind("<Escape>", lambda even: self.topShowAllCommandes.destroy())
 
 			arbre = ttk.Treeview(self.topShowAllCommandes, column=("c1", "c2","c3","c4","c5","c6","c7","c8"), show='headings')
@@ -400,7 +398,6 @@ class main():
 			cur.close()
 			conn.close()
 			
-
 			l = ["Numéro de la commande","Nom du client","Date de dépôt","Code postale","Ville","Devis","Description","Travail à faire"]
 
 			for i in range(len(l)):
@@ -408,18 +405,16 @@ class main():
 				arbre.heading("#"+str(i+1), text=l[i])
 			arbre.pack(side="bottom",expand=True, fill='y')		
 			
-			
 			barr_rechC.queryString = AutocompleteCombobox(self.topShowAllCommandes,width=30,font=('Times', 18),completevalues=recuperer("commande"))
 			barr_rechC.queryString.pack(padx=10,pady=130)
 			
 			barr_rechC.queryString.bind("<Return>", lambda even, brci = barr_rechC, wC = self.topShowAllCommandes: search(brci,wC,"commande"))
 			self.topShowAllCommandes.bind("<Return>", lambda even, brci = barr_rechC, wC = self.topShowAllCommandes: search(brci,wC,"commande"))
 			
-			tk.Button(self.topShowAllCommandes, text='Chercher',highlightbackground = "#666363", command=partial(search,barr_rechC,self.topShowAllCommandes,"commande")).place(x=900,y=130)
+			tk.Button(self.topShowAllCommandes, text='Chercher', command=partial(search,barr_rechC,self.topShowAllCommandes,"commande")).place(x=900,y=130)
 			tk.Button(self.topShowAllCommandes, text='Quitter', command=lambda: self.topShowAllCommandes.destroy()).place(x=650,y=200)
 
 
-		
 		# - Permet d'ajouter une commande -
 		def windowCommande(self, idC, Comm):
 			
@@ -445,9 +440,7 @@ class main():
 			self.titreRestePaye = tk.Label(self.top,text="Reste a payer",bg=color,font =('normal',self.fontSize,'bold')).grid(row=10)
 			self.titreDescription = tk.Label(self.top, text="Description",bg=color,font =('normal',self.fontSize,'bold')).grid(row=11)
 			self.titretravaf = tk.Label(self.top, text="Travail à faire", bg=color,font =('normal',self.fontSize,'bold')).grid(row=12)
-			self.titreNmbcmd = tk.Label(self.top, text="Nombre de commande", bg=color,font =('normal',self.fontSize,'bold')).grid(row=13)
-			self.titrePhoto = tk.Label(self.top, text="Photo", bg=color,font =('normal',self.fontSize,'bold')).grid(row=14)
-
+			self.titrePhoto = tk.Label(self.top, text="Photo", bg=color,font =('normal',self.fontSize,'bold')).grid(row=13)
 
 			if type(Comm) == tuple:
 				
@@ -479,12 +472,11 @@ class main():
 				data.acompte.insert(0, Comm[7])
 				data.resterPaye = tk.Entry(self.top)
 				data.resterPaye.insert(0, Comm[8])
-				data.Description = tk.Entry(self.top)
+				data.Description = tk.Text(self.top,width=30)
 				data.Description.insert(0, Comm[9])
 				data.travaf = tk.Entry(self.top)
 				data.travaf.insert(0, Comm[10])
 				data.Photo = tk.Entry(self.top)
-
 
 				data.dateDepot.grid(row=1, column=2)
 				data.idClient.grid(row=2, column=2)
@@ -498,34 +490,33 @@ class main():
 				#data.resterPaye.grid(row=10, column=2)
 				data.Description.grid(row=11, column=2)
 				data.travaf.grid(row=12, column=2)
-				data.Nmbcmd.grid(row=13, column=2)
-				data.Photo.grid(row=14, column=2)
+				data.Photo.grid(row=13, column=2)
 
 			else:
-				data.dateDepot = tk.Entry(self.top)
+				data.dateDepot = tk.Entry(self.top,font =('normal',self.fontSize,'bold'),width=18)
 				data.dateDepot.insert(0, datetime.today().strftime('%d-%m-%Y'))
-				data.idClient = tk.Entry(self.top)
+				data.idClient = tk.Entry(self.top,font =('normal',self.fontSize,'bold'),width=18)
 				#oui
 				data.idClient.insert(0, idC)
-				data.idCommande = tk.Entry(self.top)
-				data.adresseLivraison = tk.Entry(self.top)
+				data.idCommande = tk.Entry(self.top,font =('normal',self.fontSize,'bold'),width=18)
+				data.adresseLivraison = tk.Entry(self.top,font =('normal',self.fontSize,'bold'),width=18)
 			
 				if type(Comm) == list and len(Comm) > 1:
 					data.adresseLivraison.insert(0, Comm[0][0])
-				data.cp = tk.Entry(self.top)
+				data.cp = tk.Entry(self.top,font =('normal',self.fontSize,'bold'),width=18)
 				if type(Comm) == list and len(Comm) > 1:
 					data.cp.insert(0, Comm[0][1])
-				data.ville = tk.Entry(self.top)
+				data.ville = tk.Entry(self.top,font =('normal',self.fontSize,'bold'),width=18)
 				if type(Comm) == list and len(Comm) > 1:
 					data.ville.insert(0, Comm[0][2])
-				data.prixConvenu = tk.Entry(self.top)
-				data.devis = tk.Entry(self.top)
-				data.acompte = tk.Entry(self.top)
-				data.resterPaye = tk.Entry(self.top)
-				data.Description = tk.Entry(self.top)
-				data.travaf = tk.Entry(self.top)
-				data.Nmbcmd = tk.Entry(self.top)
-				data.Photo = tk.Entry(self.top)
+				data.prixConvenu = tk.Entry(self.top,font =('normal',self.fontSize,'bold'),width=18)
+				data.devis = tk.Entry(self.top,font =('normal',self.fontSize,'bold'),width=18)
+				data.acompte = tk.Entry(self.top,font =('normal',self.fontSize,'bold'),width=18)
+				data.resterPaye = tk.Entry(self.top,font =('normal',self.fontSize,'bold'),width=18)
+				data.Description = tk.Text(self.top,font =('normal',self.fontSize,'bold'),height=10)
+				data.travaf = tk.Text(self.top,font =('normal',self.fontSize,'bold'),height=10)
+				data.Nmbcmd = tk.Entry(self.top,font =('normal',self.fontSize,'bold'),width=18)
+				data.Photo = tk.Entry(self.top,font =('normal',self.fontSize,'bold'),width=18)
 
 				data.dateDepot.grid(row=1, column=2)
 				data.idClient.grid(row=2, column=2)
@@ -539,8 +530,7 @@ class main():
 				data.resterPaye.grid(row=10, column=2)
 				data.Description.grid(row=11, column=2)
 				data.travaf.grid(row=12, column=2)
-				data.Nmbcmd.grid(row=13, column=2)
-				data.Photo.grid(row=14, column=2)
+				data.Photo.grid(row=13,column=2)
 
 			# - Permet l'enregistrement de la BDD -
 			def getVarCommande(data,self,idC):
@@ -548,70 +538,142 @@ class main():
 					ct = 1
 				else:
 					ct = int(data.Nmbcmd.get())
-				
-				if data.idCommande.get()!="" and data.idClient.get()!="" and data.Description.get()!="":
-					print("idCommande: "+str(data.idCommande.get()))
-					print(str((float(data.devis.get()))-(float(data.acompte.get()))))
-					conn = sqlite3.connect('base.db')
-					rqt = "INSERT OR REPLACE INTO Commandes (dateDepot,idClient,idCommande,adresseLivraison,cp,ville,prixConvenu,devis,acompte,resterPaye,description,travaf) VALUES ('"+data.dateDepot.get()+"','"+data.idClient.get()+"','"+data.idCommande.get()+"','"+data.adresseLivraison.get()+"','"+data.cp.get()+"','"+data.ville.get()+"','"+data.prixConvenu.get()+"','"+data.devis.get()+"','"+data.acompte.get()+"','"+str((float(data.devis.get()))-(float(data.acompte.get())))+"','"+data.Description.get()+"','"+data.travaf.get()+"')"
-					cur = conn.cursor()
+
+				print("idCommande: "+str(data.idCommande.get()))
+				conn = sqlite3.connect('base.db')
+				rqt = "INSERT OR REPLACE INTO Commandes (dateDepot,idClient,idCommande,adresseLivraison,cp,ville,prixConvenu,devis,acompte,resterPaye,description,travaf) VALUES ('"+data.dateDepot.get()+"','"+data.idClient.get()+"','"+data.idCommande.get()+"','"+data.adresseLivraison.get()+"','"+data.cp.get()+"','"+data.ville.get()+"','"+data.prixConvenu.get()+"','"+data.devis.get()+"','"+data.acompte.get()+"','"+str((float(data.devis.get()))-(float(data.acompte.get())))+"','"+data.Description.get()+"','"+data.travaf.get()+"')"
+				cur = conn.cursor()
+				cur.execute(rqt)
+				conn.commit()
+				for i in range(ct):
+					rqt = "INSERT OR REPLACE INTO Commandes (dateDepot,idClient,idCommande,adresseLivraison,cp,ville,prixConvenu,devis,acompte,resterPaye,description,travaf) VALUES ('"+data.dateDepot.get()+"','"+data.idClient.get()+"','"+str(int(data.idCommande.get())+i)+"','"+data.adresseLivraison.get()+"','"+data.cp.get()+"','"+data.ville.get()+"','"+data.prixConvenu.get()+"','"+data.devis.get()+"','"+data.acompte.get()+"','"+str((float(data.devis.get()))-(float(data.acompte.get())))+"','"+data.Description.get()+"','"+data.travaf.get()+"')"
 					cur.execute(rqt)
 					conn.commit()
-					for i in range(ct):
-						rqt = "INSERT OR REPLACE INTO Commandes (dateDepot,idClient,idCommande,adresseLivraison,cp,ville,prixConvenu,devis,acompte,resterPaye,description,travaf) VALUES ('"+data.dateDepot.get()+"','"+data.idClient.get()+"','"+str(int(data.idCommande.get())+i)+"','"+data.adresseLivraison.get()+"','"+data.cp.get()+"','"+data.ville.get()+"','"+data.prixConvenu.get()+"','"+data.devis.get()+"','"+data.acompte.get()+"','"+str((float(data.devis.get()))-(float(data.acompte.get())))+"','"+data.Description.get()+"','"+data.travaf.get()+"')"
-						cur.execute(rqt)
-						conn.commit()
-					cur.close()
-					conn.close()
+				cur.close()
+				conn.close()
 				self.top.destroy()
+				windowCommande()
 					
 			#self.top.bind("<Return>", lambda even,d=data,s=self,i=idC: getVarCommande(d,s,i))
-			self.btnValide = tk.Button(self.top, text='Valider', highlightbackground=color,command=partial(getVarCommande,data,self,idC)).grid(row=15,column=2,sticky=tk.W,pady=4)
-			self.btnBon = tk.Button(self.top, text='Bon de commande', highlightbackground=color, command=partial(setCommtoBon,data))
-			self.btnBon.grid(row=16, column=2)
+			self.btnValide = tk.Button(self.top, text='Valider', highlightbackground=color,command=partial(getVarCommande,data,self,idC)).place(x=900,y=800)
+			self.btnBon = tk.Button(self.top, text='Bon de commande', highlightbackground=color, command=partial(setCommtoBon,data)).place(x=1000,y=800)
 
-			
+		def fact_cli():
+			from docx import Document 
+			from datetime import datetime
+			con = sqlite3.connect('base.db')
+
+			cur = con.cursor()
+			cur.execute('SELECT idClient FROM Commandes;')
+			idCli = cur.fetchall()
+
+			l =[]
+
+			for i in range(len(idCli)):
+				for e in range(len(idCli[i])):
+					l.append(str(idCli[i][e]))
+			l = list(set(l))
+
+			comm = []
+			for i in range(len(l)):
+				cur.execute('SELECT * FROM Commandes WHERE idClient=?;', l[i])
+				comm.append(cur.fetchall())
+   
+			#print(str(comm[1][0][11]) + "id: "+ str(comm[0][0][11]))
+
+			for i in range(len(comm)):
+				doc = Document()
+				for e in range(len(comm[i])):
+					for x in range(len(comm[i][e])):
+						l.append(str(comm[i][e][x]))
+					doc.add_paragraph(' '.join(l))
+					l = []
+				doc.save('factures/' + str(comm[i][0][11]) + '_' +datetime.today().strftime("%d-%m-%Y")+'.docx')
+			showinfo(
+			title='Facture',
+			message='Les factures ont été générées.'
+			)
+        	
 		def setCommtoBon(data):
+			from datetime import datetime
+			from docx import Document
+			from os import listdir
+			
 			print(dir(data))
+		
+			print(data.idClient.get())
+			
+			con = sqlite3.connect('base.db')
+		
+			cur = con.cursor()
+			cur.execute('SELECT * FROM Clients WHERE idClient = ?;', [data.idClient.get()])
+			
+			infoc = cur.fetchall()
+			
+			nom_entcli = infoc[0][1]
+			adr_cli = data.adresseLivraison.get()
+			adr_ent = infoc[0][2]
+			tel_cli = infoc[0][8]
+			prix = data.prixConvenu.get()
+			qnt = 1
 
+			entre = {"[date]":datetime.today().strftime('%d-%m-%Y'),"[datefdm]":"30-" + datetime.today().strftime('%m-%Y'),"[Nom de l'entreprise]":"REST'OR","[Entrecli]":nom_entcli,"[Adresse de l'entreprise du client]":adr_cli, "[SIRET du client]":"SRTcli", "[Numéro de TVA du client]":"VTA000", "[Adresse]":"ROUTE DE PONT L'EVEQUE 27260 CORMEILLES", "[SIRET]":"SRT000", "[Numéro de TVA]":"TV090909", "[Téléphone]":tel_cli, "[QNT]":qnt, "[prix]":prix}
+			
+			doc = Document('factures/exemple.docx')
+	
+			for i in entre:
+				for p in doc.paragraphs:
+					if p.text.find(i)>=0:
+						p.text = p.text.replace(i, entre[i])
+			
+			
+			dirs = listdir("factures/")
+			dirs.sort(reverse=True)
+			print(dirs)
+						
+			for i in range(len(dirs)):
+				if "Facture" in dirs[i]:
+						indice = dirs[i][len(dirs[i]) -6]
+						break
+				else:
+						indice = 0
+			doc.save('factures/Facture'+ str(int(indice) + 1)+'.docx')
+			showinfo(
+			title='Bon de commande',
+			message='Le bon de commande à été généré.'
+			)
+							
 		# - Permet d'ajouter un client -
 		def windowClient(self):
-
-			w = 25
-			l = 12
-
 			color = "#52575B"
-
 			data = Data()
 
 			self.top = tk.Toplevel(bg=color)
 			self.top.title("Nouveau client")
-			self.top.geometry("400x300")
+			self.top.geometry("800x600")
 			self.top.bind("<Escape>", lambda d: self.top.destroy())
 			
-			#self.labelTitre = tk.Label(self.top,text="Nouveaux clients",fg= color,bg=color,font=10).grid(row=0)
-
-			self.titreidClient = tk.Label(self.top,text='Identifiant du client',bg=color).grid(row=1)
-			self.titrefirmeNom = tk.Label(self.top,text='Nom Entreprise',bg=color).grid(row=2)
-			self.titrefirmeAdresse = tk.Label(self.top,text='Adresse Entreprise',bg=color).grid(row=3)
-			self.titrefirmeCP = tk.Label(self.top,text='Code Postale Entreprise',bg=color).grid(row=4)
-			self.titrefirmeVille = tk.Label(self.top,text='Ville Entreprise',bg=color).grid(row=5)
-			self.titreclientNom = tk.Label(self.top,text='Nom',bg=color).grid(row=6)
-			self.titrePrenom = tk.Label(self.top,text='Prenom',bg=color).grid(row=7)
-			self.titreadresseMail = tk.Label(self.top,text='Adresse Mail',bg=color).grid(row=8)
-			self.titreSoldeCompte = tk.Label(self.top,text='Compte poids',bg=color).grid(row=9)
-			self.titreTelephone = tk.Label(self.top,text='Tel',bg=color).grid(row=10)
+			self.titreidClient = tk.Label(self.top,text='Identifiant du client',bg=color,font =('normal',self.fontSize,'bold')).grid(row=1)
+			self.titrefirmeNom = tk.Label(self.top,text='Nom Entreprise',bg=color,font =('normal',self.fontSize,'bold')).grid(row=2)
+			self.titrefirmeAdresse = tk.Label(self.top,text='Adresse Entreprise',bg=color,font =('normal',self.fontSize,'bold')).grid(row=3)
+			self.titrefirmeCP = tk.Label(self.top,text='Code Postale Entreprise',bg=color,font =('normal',self.fontSize,'bold')).grid(row=4)
+			self.titrefirmeVille = tk.Label(self.top,text='Ville Entreprise',bg=color,font =('normal',self.fontSize,'bold')).grid(row=5)
+			self.titreclientNom = tk.Label(self.top,text='Nom',bg=color,font =('normal',self.fontSize,'bold')).grid(row=6)
+			self.titrePrenom = tk.Label(self.top,text='Prenom',bg=color,font =('normal',self.fontSize,'bold')).grid(row=7)
+			self.titreadresseMail = tk.Label(self.top,text='Adresse Mail',bg=color,font =('normal',self.fontSize,'bold')).grid(row=8)
+			self.titreSoldeCompte = tk.Label(self.top,text='Compte poids',bg=color,font =('normal',self.fontSize,'bold')).grid(row=9)
+			self.titreTelephone = tk.Label(self.top,text='Tel',bg=color,font =('normal',self.fontSize,'bold')).grid(row=10)
 			
-			data.idClient = tk.Entry(self.top)
-			data.firmeNom = tk.Entry(self.top)
-			data.firmeAdresse = tk.Entry(self.top)
-			data.firmeCP = tk.Entry(self.top)
-			data.firmeVille = tk.Entry(self.top)
-			data.clientNom = tk.Entry(self.top)
-			data.clientPrenom = tk.Entry(self.top)
-			data.adresseMail = tk.Entry(self.top)
-			data.soldeCompte = tk.Entry(self.top)
-			data.telephone = tk.Entry(self.top)
+			data.idClient = tk.Entry(self.top,font =('normal',self.fontSize,'bold'),width=25)
+			data.firmeNom = tk.Entry(self.top,font =('normal',self.fontSize,'bold'),width=25)
+			data.firmeAdresse = tk.Entry(self.top,font =('normal',self.fontSize,'bold'),width=25)
+			data.firmeCP = tk.Entry(self.top,font =('normal',self.fontSize,'bold'),width=25)
+			data.firmeVille = tk.Entry(self.top,font =('normal',self.fontSize,'bold'),width=25)
+			data.clientNom = tk.Entry(self.top,font =('normal',self.fontSize,'bold'),width=25)
+			data.clientPrenom = tk.Entry(self.top,font =('normal',self.fontSize,'bold'),width=25)
+			data.adresseMail = tk.Entry(self.top,font =('normal',self.fontSize,'bold'),width=25)
+			data.soldeCompte = tk.Entry(self.top,font =('normal',self.fontSize,'bold'),width=25)
+			data.telephone = tk.Entry(self.top,font =('normal',self.fontSize,'bold'),width=25)
 
 			data.idClient.grid(row=1, column=2)
 			data.firmeNom.grid(row=2, column=2)
@@ -638,7 +700,7 @@ class main():
 					self.top.destroy()
         		
 			self.top.bind("<Return>", lambda e, d=data,s=self: getVarClients(d,s))
-			self.btnValide = tk.Button(self.top, text='Valider', highlightbackground =color,command=partial(getVarClients,data,self)).place(x=230,y= 230)
+			self.btnValide = tk.Button(self.top, text='Valider', highlightbackground =color,command=partial(getVarClients,data,self)).place(x=400,y= 370)
 
 
 		def showClients(event):
@@ -694,21 +756,26 @@ class main():
 
 				self.LabelCompte = tk.Label(self.topShowCommande,text=compte,bg=color1).place(x=340,y=135)
 				self.titreCompte = tk.Label(self.topShowCommande,text='Compte poids : ',bg=color1).place(x=220,y=135)
+			
+		
 
 		def windowSett():
-			def destryWindowSett(self):
-				self.settFrame.pack_forget()
-				self.btnFlech.pack_forget()
-			self.settFrame = Frame(window,bg="white",width=400,height=10000,borderwidth = 1,relief="raised",).pack(side=RIGHT)
-			self.btnFlech = tk.Button(window,text="➡️",width=3,height=1,font=20,highlightbackground = "white",bg = 'grey',command=destryWindowSett(self)).place(x=1200,y=350)
-			
+			color1 = "white"
+			self.topsett = tk.Toplevel(bg=color1)
+			self.topsett.geometry("3000x700")
+			self.topsett.title('Settings')
 
+
+			
 
 
 
 			
 		# - Affiche des boutons permettant d'accéder aux fonctionnalités -
 		def prolongBtn(self):
+			btnprolong5 = tk.Button(window,text="Facturation",bg="#666363",relief="ridge",highlightbackground = "#666363",command = partial
+			(fact_cli),width=18)
+			btnprolong5.place(x=1165,y=230)
 			btnprolong2 = tk.Button(window,text="Nouveau client",bg="#666363",relief="ridge",highlightbackground = "#666363",command = partial(windowClient,self),width=18)
 			btnprolong2.place(x=1165,y=110)
 			btnprolong3 = tk.Button(window,text="Toutes les commandes",bg="#666363",relief="ridge",highlightbackground = "#666363",command = showAllCommandes,width=18)
@@ -729,3 +796,4 @@ class main():
 
 # - Initialisation de l'UI -
 app = main()
+
